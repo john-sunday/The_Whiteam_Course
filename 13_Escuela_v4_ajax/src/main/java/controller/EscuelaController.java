@@ -19,17 +19,19 @@ import service.CursosService;
 
 @Controller
 public class EscuelaController {
+	
 	@Autowired
 	AlumnosService serviceAlumnos;
 	@Autowired
 	CursosService serviceCursos;
+	
 	@PostMapping("altaAlumno") //gestiona la pulsación del botón de alta
 	public String altaAlumno(@ModelAttribute("alumno") Alumno alumno, @RequestParam("idCurso") int idCurso) {
 		serviceAlumnos.altaAlumno(alumno, idCurso);
 		return "inicio";
 	}
 	
-	// 1 - *** Gestiona petición ALJAX.
+	// 1 - *** Gestiona petición AJAX.
 	/* La biblioteca Jackson gestiona y traduce la List<Alumno> en un JSON. 
 	 * AJAX introduce en el body la respuesta List<Alumno>. */
 	@GetMapping(value="buscarAlumnos",produces=MediaType.APPLICATION_JSON_VALUE) //gestiona la pulsación del botón de búsqueda
